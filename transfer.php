@@ -1,4 +1,4 @@
- <?php include("header.php");?>
+<?php include("header.php");?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -34,6 +34,11 @@ select#choices {
 							$msg2=$_GET['msg2'];
 							 if($msg2=='same_id')
 							echo "<script type='text/javascript'>alert('Sender and Receiver Ids should not be same');</script>";
+
+							$msg3=$_GET['msg3'];
+							 if($msg3=='no')
+							echo "<script type='text/javascript'>alert('Sender A/C has Insufficient balance.');</script>";
+
 
 
 							 
