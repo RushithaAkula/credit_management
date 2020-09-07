@@ -22,11 +22,19 @@ select#choices {
 </style>
 </head>
   <?php 
+
+
+  include("database.php");
 						error_reporting(0);
 						     
 							 $msg2=$_GET['msg'];
 							 if($msg2=='done')
 							echo "<script type='text/javascript'>alert('Transfered Successfully..!');</script>";
+
+							$msg2=$_GET['msg2'];
+							 if($msg2=='same_id')
+							echo "<script type='text/javascript'>alert('Sender and Receiver Ids should not be same');</script>";
+
 
 							 
 						?> 
@@ -42,12 +50,47 @@ select#choices {
 
 <tr>
 	<td><font size="3">Transfer from UserId:</font></td>
-	<td><input type="number" name="frmuid" required></td>
+	<td>
+	<select name="frmuid" style="width:200px;" class="form-control" >
+			 <?PHP
+			 
+			 $sql_sel="SELECT User_id FROM adduser";
+				$res_sel=mysqli_query($conn,$sql_sel);
+			  while($row_sel=mysqli_fetch_array($res_sel))
+				{	
+				?> 
+			<option value="<?php echo $row_sel['User_id']?>"><?php  echo $row_sel['User_id']?>
+				
+				 <?PHP  
+
+				}?>
+				
+			  </select>
+	
+	</td>
 </tr>
 
 <tr>
 	<td><font size="3">Transfer to UserId</h3></td>
-	<td><input type="number" name="touid"  required></td>
+	<td>
+	<select name="touid" style="width:200px;" class="form-control" >
+			 <?PHP
+			 
+			 $sql_sel="SELECT User_id FROM adduser";
+				$res_sel=mysqli_query($conn,$sql_sel);
+			  while($row_sel=mysqli_fetch_array($res_sel))
+				{	
+				?> 
+			<option value="<?php echo $row_sel['User_id']?>"><?php  echo $row_sel['User_id']?>
+				
+				 <?PHP  
+
+				}?>
+				
+			  </select>
+	
+	
+	</td>
 </tr>
 
 <tr>
