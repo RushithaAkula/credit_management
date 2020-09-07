@@ -14,6 +14,8 @@
 
 				
 
+
+
 		if($frmuid==$touid){
 
 
@@ -21,6 +23,36 @@
 header("Location:transfer.php?msg2=same_id");
 
 		}else{
+
+
+
+$query="select *from adduser where User_id='$frmuid'";
+
+$result = mysqli_query($conn,$query) or  die('Could not look up user information; ' . mysqli_error($conn));
+
+if(mysqli_num_rows($result)){
+
+		
+
+		while($r=mysqli_fetch_array($result))
+
+			{
+
+		 $frmamnt=$r["Credit"];
+
+		
+
+			if($amnt>$frmamnt){
+
+
+
+				header("Location:transfer.php?msg3=no");
+
+			}
+
+			else{
+
+
 
 
 
@@ -54,19 +86,19 @@ if(mysqli_num_rows($result)){
 
 
 
-$query2="select *from adduser where User_id='$touid'";
+		$query2="select *from adduser where User_id='$touid'";
 
-$result2 = mysqli_query($conn,$query2) or  die('Could not look up user information; ' . mysqli_error($conn));
+		$result2 = mysqli_query($conn,$query2) or  die('Could not look up user information; ' . mysqli_error($conn));
 
-if(mysqli_num_rows($result2)){
+		if(mysqli_num_rows($result2)){
 
 		
 
-		while($r2=mysqli_fetch_array($result2))
+			while($r2=mysqli_fetch_array($result2))
 
-			{
+				{
 
-		 $toamnt=$r2["Credit"];
+			$toamnt=$r2["Credit"];
 
 			$tototamnt=$toamnt+$amnt;
 
@@ -78,7 +110,9 @@ if(mysqli_num_rows($result2)){
 
 			}
 
-}
+						}
+
+
 
 
 
@@ -107,6 +141,22 @@ if(mysqli_num_rows($result2)){
 
 
 		}
+
+
+
+
+
+		
+
+			}
+
+						
+
+			}
+
+}
+
+
 
 ?>
 
